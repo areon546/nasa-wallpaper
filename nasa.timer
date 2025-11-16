@@ -1,0 +1,11 @@
+[Unit]
+Description=Runs `nasa.service` daily.
+
+[Timer]
+OnBootSec=5s
+OnCalendar=*-*-* 00:00:00
+Unit=nasa.service
+Persistent=true
+
+[Install]
+WantedBy=default.target

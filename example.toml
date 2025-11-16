@@ -1,4 +1,8 @@
 
-[API]
-api = "apod"
+hidef = false # if you set to true, better photo, slower command (doesn't mean much unless on limited wifi)
+
+[API.apod]
+url = "https://api.nasa.gov/planetary/apod"
 key = "DEMO_KEY" # https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=5
+params = [
+] # an array where each even index is a key, and the following index is the parameter value

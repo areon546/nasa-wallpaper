@@ -1,3 +1,5 @@
+github.com/BurntSushi/toml v1.5.0 h1:W5quZX/G/csjUnuI8SUYlsHs9M38FC7znL0lIO+DvMg=
+github.com/BurntSushi/toml v1.5.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/areon546/go-files v0.0.0-20251109040613-371541c8a8d2 h1:xOCBLAgQvWODTf266CLuzlQGjUrMt5CvT4IwZJGEFPM=
 github.com/areon546/go-files v0.0.0-20251109040613-371541c8a8d2/go.mod h1:qLbymUZ8QbF72H0gQLizmd0t3fX/MZx23/flzq8iqYQ=
 github.com/areon546/go-helpers v0.0.0-20250820120313-8a98e4eca6e5 h1:djA5yPn2QbiY/GLFkq+HPql6oFFFHbWnZe4Ys7Um25c=

@@ -1,45 +1,66 @@
 package internal
 
 import (
+	"fmt"
 	"os"
+	"path/filepath"
 
-	"github.com/areon546/go-files/files"
-	"github.com/areon546/go-helpers/helpers"
+	"github.com/BurntSushi/toml"
 )
 
-type Config struct {
-	configDir string
-}
+var (
+	configDirectory   string
+	screenshotsConfig string
+	c                 *Config = &Config{}
+)
 
-func ReadConfig() Config {
-	c := Config{}
+type (
+	Config struct {
+		Api map[string]api
 
-	checkConfigDirectory()
+		Hidef bool
+	}
+)
+
+func ReadConfig() *Config {
+	checkConfigDirectory() // sets configDirectory
+	screenshotsConfig = configDirectory + "/wallpaper.toml"
+
+	_, err := os.ReadFile(screenshotsConfig)
+
+	// if screenshot.conf exists: load
+	if err != nil {
+		print(err)
+		writeDefaultConfig()
+	} else {
+		loadConfig()
+	}
 
 	return c
 }
 
-// checkConfigDirectory looks for a default directory to write the config file to
+// sets default config directory for the program
 func checkConfigDirectory() {
-	xdgConfig := os.Getenv("XDG_CONFIG_HOME")
-	xdgConfigExists := !helpers.EqualsString("", xdgConfig)
-	if !xdgConfigExists {
-		files.MakeDirectory("~/.config/dragon/nasa/")
+	home, err := os.UserConfigDir()
+	if err != nil {
+		panic(err)
 	}
 
-	configFileExists, _ := files.DirExists("~/.config/dragon/nasa")
-	if configFileExists {
-		loadConfig()
-	} else {
-		writeDefaultConfig()
-	}
+	configDirectory = filepath.Join(home, "dragon/nasa")
 }
 
 func loadConfig() {
+	fmt.Println("Loading Config")
 	// READ TOML File
+	//
+	_, err := toml.DecodeFile(screenshotsConfig, c)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func writeDefaultConfig() {
+	fmt.Println("Default config printed to ", configDirectory)
 	// Default Config:
 	// API:
 	// API_KEY: demo -unset

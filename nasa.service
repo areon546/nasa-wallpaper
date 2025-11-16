@@ -1,0 +1,9 @@
+[Unit]
+Description=Set background to NASA's Astronomical Picture of the Day
+
+[Service]
+ExecStart=pwd
+
+[Install]
+WantedBy=default.target
+
