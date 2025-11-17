@@ -23,7 +23,8 @@ func main() {
 	c = internal.ReadConfig()
 	res := internal.Get(c.Api["apod"])
 
-	var picture any
+	var picture APOD
+	// var picture any
 
 	fmt.Println("p", &picture)
 
@@ -56,6 +57,11 @@ func handleAPOD(apod *APOD) {
 
 	fmt.Println(url, c.Hidef, apod.URL)
 
+	// alternative bg args : see man feh /--bg-
+	// --bg-scale
+	// --bg-max
+	// --bg-tile
+	// --bg-fill
 	cmd := exec.Command("/usr/bin/feh", "--bg-max", url)
 
 	fmt.Println(cmd.String())

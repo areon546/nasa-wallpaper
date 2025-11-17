@@ -2,7 +2,7 @@
 Description=Set background to NASA's Astronomical Picture of the Day
 
 [Service]
-ExecStart=pwd
+ExecStart=%h/.config/dragon/nasa/set-background
 
 [Install]
 WantedBy=default.target

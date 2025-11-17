@@ -17,6 +17,17 @@ build:
 setup: build 
 	# copy relevant files to setup the daemon
 	cp ./set-background ~/.config/dragon/nasa/
+	# .config systemd user is apparently a recommendation for where to put services files that run within userspace
 	cp nasa.service ~/.config/systemd/user/nasa.service
 	cp nasa.timer ~/.config/systemd/user/nasa.timer
-	sudo systemctl daemon-reload
+
+
+test:
+	feh --bg-max https://upload.wikimedia.org/wikipedia/commons/5/52/Exampledotcom_2025.png
+
+reset: 
+	xsetroot -solid "#333333"
+
+systemd: setup 
+	systemctl --user daemon-reload
+	systemctl --user restart nasa
