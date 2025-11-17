@@ -31,6 +31,14 @@ Run `make help` to get a description of what they do.
 `make systemd` sets up the program and restarts the sytem services daemon
 so that it recognises `nasa.service`, and then runs it.
 
+Steps:
+
+1. Clone the repository.
+2. Run `make systemd`
+
+And in theory this is all that should be needed for it to automatically request
+a new background daily.
+
 ## Project
 
 The project taught me some basics on `systemd` services and timers,
