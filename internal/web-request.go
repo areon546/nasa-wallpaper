@@ -14,7 +14,7 @@ func Get(api api) *http.Response {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("STATUS", res.Status)
+	// fmt.Println("STATUS", res.Status)
 	return res
 }
 

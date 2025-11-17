@@ -24,19 +24,12 @@ func main() {
 	res := internal.Get(c.Api["apod"])
 
 	var picture APOD
-	// var picture any
-
-	fmt.Println("p", &picture)
-
 	something := internal.ProcessResponse(res, &picture)
 
-	fmt.Println(something)
 	switch something := something.(type) {
 	case *APOD:
 		handleAPOD(something)
 
-	case *int: // ptr
-		fmt.Println("Pointer")
 	default:
 		fmt.Println("Unknown API Type")
 
@@ -47,15 +40,13 @@ func main() {
 func handleAPOD(apod *APOD) {
 	var url string
 
-	fmt.Println(apod)
-
 	if c.Hidef {
 		url = apod.Hdurl
 	} else {
 		url = apod.URL
 	}
 
-	fmt.Println(url, c.Hidef, apod.URL)
+	fmt.Println("URLS: ", url, c.Hidef, apod.URL)
 
 	// alternative bg args : see man feh /--bg-
 	// --bg-scale
@@ -64,7 +55,7 @@ func handleAPOD(apod *APOD) {
 	// --bg-fill
 	cmd := exec.Command("/usr/bin/feh", "--bg-max", url)
 
-	fmt.Println(cmd.String())
+	fmt.Println("Command ran: \n", cmd.String())
 
 	err := cmd.Run()
 	if err != nil {
