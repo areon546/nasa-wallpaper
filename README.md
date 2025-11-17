@@ -55,7 +55,7 @@ Since I only use one, I wrote it directly into `cmd/set-background`.
 
 This project so far is hard coded to support the `apod` [api](https://github.com/nasa/apod-api),
 however I tried to design it so that it would be easier to restructure it
-and add additional APIs (hence the arguably awkward [example configuration file](./example.toml),
+and add additional APIs (hence the arguably awkward [example configuration file](./example.toml)),
 however in theory so long as an API contains a `url` parameter like below,
 it should function.
 
