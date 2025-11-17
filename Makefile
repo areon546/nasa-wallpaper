@@ -2,7 +2,11 @@
 help:
 	@echo "Usage:"
 	@echo "		dl		:	copies config to relevant directory, and runs cmd/download-photo"
-	@
+	@echo "		copy	: copies nasa-photos.toml to the relevant config folder I made for this project"
+	@echo "		setup	: compiles the set-background program, and moves relevant files around, primarily used in setting up the service"
+	@echo "			systemd (alias for setup)"
+	@echo "		test	: (testing purposes) sets my homescreen to example.com jpeg, sourced from wikipedia"
+	@echo "		reset	: (testing purposes) resets homescreen to blank gray"
 	@
 
 copy:
@@ -11,13 +15,14 @@ copy:
 dl: copy 
 	go run cmd/set-background/set-background.go
 
-build:
-	go build cmd/set-background/set-background.go
-
-setup: build 
-	# copy relevant files to setup the daemon
+setup: 
+	# compile and copy set-background command 
+	go build cmd/set-background/set-background.go 
 	cp ./set-background ~/.config/dragon/nasa/
-	# .config systemd user is apparently a recommendation for where to put services files that run within userspace
+	# .config systemd user is apparently a recommendation for 
+	# where to put services files that run within userspace,
+	# i placed the service and timer files there
+	# so that they run regularly
 	cp nasa.service ~/.config/systemd/user/nasa.service
 	cp nasa.timer ~/.config/systemd/user/nasa.timer
 
