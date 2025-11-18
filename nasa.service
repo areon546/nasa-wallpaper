@@ -3,6 +3,10 @@ Description=Set background to NASA's Astronomical Picture of the Day
 
 [Service]
 ExecStart=%h/.config/dragon/nasa/set-background
+Restart=on-failure
+RestartSec=10m
+RestartSteps=5
+RestartMaxDelaySec=100m
 
 [Install]
 WantedBy=default.target
