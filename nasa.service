@@ -2,7 +2,10 @@
 Description=Set background to NASA's Astronomical Picture of the Day
 
 [Service]
+Type=forking
+# run file 
 ExecStart=%h/.config/dragon/nasa/set-background
+# try after 10m
 Restart=on-failure
 RestartSec=10m
 RestartSteps=5
