@@ -36,3 +36,6 @@ reset:
 systemd: setup 
 	systemctl --user daemon-reload
 	systemctl --user restart nasa
+
+journal:
+	journalctl --user -xeu nasa
