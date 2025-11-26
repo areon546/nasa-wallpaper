@@ -1,5 +1,8 @@
 # Nasa Photo Background
 
+[Backgrounds I like](./cool-backgrounds.md)
+
+
 ## Disclaimer
 
 This system is designed primarily for Linux.

@@ -1,7 +1,7 @@
 
 help:
 	@echo "Usage:"
-	@echo "		dl		:	copies config to relevant directory, and runs cmd/download-photo"
+	@echo "		dl	: copies config to relevant directory, and runs cmd/download-photo"
 	@echo "		copy	: copies nasa-photos.toml to the relevant config folder I made for this project"
 	@echo "		setup	: compiles the set-background program, and moves relevant files around, primarily used in setting up the service"
 	@echo "			systemd (alias for setup)"
@@ -35,7 +35,8 @@ reset:
 
 systemd: setup 
 	systemctl --user daemon-reload
-	systemctl --user restart nasa
+	systemctl --user restart nasa.timer
+	systemctl --user restart nasa.service
 
 journal:
 	journalctl --user -xeu nasa
