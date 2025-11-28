@@ -1,11 +1,14 @@
 package internal
 
 import (
+	"encoding/json"
 	"errors"
+	"fmt"
+	"net/http"
 )
 
 type (
-	api struct {
+	API struct {
 		URL    string
 		Key    string
 		Params []string
@@ -14,11 +17,11 @@ type (
 
 var ErrParamArrayInvalid = errors.New("nasa-wallpaper: error, one of your parameters is missing a value")
 
-func (api api) FullURL() string {
+func (api API) FullURL() string {
 	return api.URL + api.evalParamString()
 }
 
-func (api api) evalParamString() string {
+func (api API) evalParamString() string {
 	if len(api.Params)%2 == 1 {
 		panic(ErrParamArrayInvalid)
 	}
@@ -38,4 +41,22 @@ func (api api) evalParamString() string {
 	}
 
 	return params
+}
+
+func Get(api API) *http.Response {
+	url := api.FullURL()
+
+	fmt.Println("GET", url)
+	res, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	}
+	// fmt.Println("STATUS", res.Status)
+	return res
+}
+
+func ProcessResponse(res *http.Response, v any) any {
+	dec := json.NewDecoder(res.Body)
+	dec.Decode(v)
+	return v
 }

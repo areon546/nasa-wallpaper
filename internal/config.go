@@ -16,7 +16,7 @@ var (
 
 type (
 	Config struct {
-		Api map[string]api
+		Api map[string]API
 
 		Hidef bool
 	}
