@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"reflect"
 
 	"areon546/nasa-wallpaper/internal"
 	"areon546/nasa-wallpaper/pkg/nasa"
@@ -13,8 +15,10 @@ func main() {
 	c = internal.ReadConfig()
 	res := internal.Get(c.Api["apod"])
 
-	var picture []nasa.APOD
+	var picture nasa.APOD
 	something := internal.ProcessResponse(res, &picture)
+
+	log.Println(reflect.TypeOf(something), something)
 
 	handle(something)
 }

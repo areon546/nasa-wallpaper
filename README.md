@@ -1,5 +1,7 @@
 # Nasa Photo Background
 
+Check out [today's photo](https://apod.nasa.gov/apod/).
+
 [Backgrounds I like](./cool-backgrounds.md)
 
 
@@ -7,8 +9,9 @@
 
 This system is designed primarily for Linux.
 I don't know how to edit Windows Registry files programmatically, but I presume there is a way.
-In theory that would be a much simpler solution to this.
-It definitely won't work on windows.
+In theory that would be a viable solution to this, 
+however I would also need to programmatically setup a schedule and I don't know how to do that.
+It definitely won't work on windows without significant changes. 
 
 Do note, if you are on Windows (10 tested, likely higher aswell),
 you can bypass restrictions on setting your background image pretty easily
@@ -18,11 +21,13 @@ This project now works, to the best of my knowledge.
 It works on my machine and I don't see how a system like `docker` is even appropriate
 for interfacing with window servers at all.
 
-So I will now move onto another project since I don't have
-the time to make the quality of this project better.
 If someone is interested and encounters an error,
-I will try my best to assist.
+I will do my best to assist.
 If I get bugs in the future, I will fix as available.
+If you use another background command, 
+or know of a more standardised way to do this, 
+assume I don't know about it and am interested in learning about it.
+
 
 ## Setup
 
@@ -31,8 +36,8 @@ that I used throughout making this process.
 
 Run `make help` to get a description of what they do.
 
-`make systemd` sets up the program and restarts the sytem services daemon
-so that it recognises `nasa.service`, and then runs it.
+`make systemd` sets up the program and restarts the system services daemon
+so that it recognises `nasa.service` and `nasa.timer`, and then runs it.
 
 Steps:
 
@@ -40,7 +45,13 @@ Steps:
 2. Run `make systemd`
 
 And in theory this is all that should be needed for it to automatically request
-a new background daily.
+a new background daily. 
+
+## Improvements
+
+- Implement windows version (somehow)?
+- Make it more reliable (timer file needs to be edited as some days it doesn't seem to work)
+
 
 ## Project
 

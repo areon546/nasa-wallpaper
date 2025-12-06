@@ -27,6 +27,9 @@ setup:
 	cp nasa.timer ~/.config/systemd/user/nasa.timer
 
 
+run:
+	go run cmd/set-background/set-background.go
+
 test:
 	feh --bg-max https://upload.wikimedia.org/wikipedia/commons/5/52/Exampledotcom_2025.png
 
