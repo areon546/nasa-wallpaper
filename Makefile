@@ -40,6 +40,7 @@ systemd: setup
 	systemctl --user daemon-reload
 	systemctl --user restart nasa.timer
 	systemctl --user restart nasa.service
+	systemctl --user enable nasa.timer
 
 journal:
 	journalctl --user -xeu nasa
