@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"areon546/nasa-wallpaper/internal"
-	"areon546/nasa-wallpaper/internal/cmd"
+	"areon546/nasa-wallpaper/pkg/cmd"
 )
 
 type APOD struct {

@@ -15,15 +15,16 @@ func SetBackground(url string) {
 	// --bg-max
 	// --bg-tile
 	// --bg-fill
-	_e := RunCommand("/usr/bin/feh", "--bg-max", url)
-
-	fmt.Println(_e)
+	RunCommand("/usr/bin/feh", "--bg-max", url)
 }
 
-func RunCommand(name string, args ...string) error {
+func RunCommand(name string, args ...string) {
 	cmd := exec.Command(name, args...)
 
 	fmt.Println("Command ran: \n", cmd.String())
 
-	return cmd.Run()
+	err := cmd.Run()
+	if err != nil {
+		panic(err)
+	}
 }
