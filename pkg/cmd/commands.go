@@ -21,7 +21,7 @@ func SetBackground(url string) {
 func RunCommand(name string, args ...string) {
 	cmd := exec.Command(name, args...)
 
-	fmt.Println("Command ran: \n", cmd.String())
+	fmt.Println("Command ran: ", cmd.String())
 
 	err := cmd.Run()
 	if err != nil {

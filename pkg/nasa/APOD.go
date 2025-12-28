@@ -21,7 +21,15 @@ type APOD struct {
 	Version     string `json:"service_version"`
 }
 
-func HandleAPOD(c internal.Config, apod *APOD) {
+func IsAPOD(c *internal.Config, res *[]byte) (pod APOD, ok bool) {
+	var thing APOD
+	something := internal.ProcessResponse(res, &thing)
+
+	pod = *something.(*APOD)
+	return pod, len(pod.URL) >= 1
+}
+
+func HandleAPOD(c *internal.Config, apod APOD) {
 	var url string
 
 	if c.Hidef {
@@ -41,10 +49,20 @@ func HandleAPOD(c internal.Config, apod *APOD) {
 	}
 }
 
-func HandleAPODs(c *internal.Config, pods []APOD) {
+type APODS []APOD
+
+func IsAPODS(c *internal.Config, res *[]byte) (pods APODS, ok bool) {
+	var thing APODS
+	something := internal.ProcessResponse(res, &thing)
+
+	pods = *something.(*APODS)
+	return pods, len(pods) >= 1
+}
+
+func HandleAPODs(c *internal.Config, pods APODS) {
 	rand.NewSource(time.Now().UnixNano())
 
 	random := rand.Intn(len(pods))
 	apod := pods[random]
-	HandleAPOD(*c, &apod)
+	HandleAPOD(c, apod)
 }

@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
-	"reflect"
+	"net/http"
 
 	"areon546/nasa-wallpaper/internal"
 	"areon546/nasa-wallpaper/pkg/nasa"
@@ -13,27 +14,47 @@ var c *internal.Config
 
 func main() {
 	c = internal.ReadConfig()
-	res := internal.Get(c.Api["apod"])
+	apiKeys := c.APIs()
 
-	var picture nasa.APOD
-	something := internal.ProcessResponse(res, &picture)
+	for _, api := range apiKeys {
 
-	log.Println(reflect.TypeOf(something), something)
+		res := internal.Get(c.Api[api])
+		if res.StatusCode != http.StatusOK {
+			fmt.Println(api, res.StatusCode, http.StatusText(res.StatusCode))
 
-	handle(something)
+			continue // skip to next one
+		}
+
+		if handle(res) {
+			fmt.Println(api, "ok")
+			return
+		}
+
+		fmt.Println(api, "not handled")
+	}
 }
 
-func handle(something any) {
-	switch something := something.(type) {
-	case *nasa.APOD:
-		nasa.HandleAPOD(*c, something)
-
-	case *[]nasa.APOD:
-		nasa.HandleAPODs(c, *something)
-
-	default:
-		fmt.Println("Unknown API Type")
-
-		fmt.Println(something)
+// Checks pre-written handlers in order,
+// and returns true if it finds it at that point.
+func handle(res *http.Response) (finished bool) {
+	// NOTE: since it is a response, it can only be read once.
+	// I should instead be passing through the jsonBytes
+	json, err := io.ReadAll(res.Body)
+	if err != nil {
+		log.Fatal(err)
 	}
+	defer res.Body.Close()
+
+	if apods, ok := nasa.IsAPODS(c, &json); ok {
+		nasa.HandleAPODs(c, apods)
+		return true
+	}
+	if apod, ok := nasa.IsAPOD(c, &json); ok {
+		nasa.HandleAPOD(c, apod)
+		return true
+	}
+
+	fmt.Println(res.Header)
+
+	return
 }

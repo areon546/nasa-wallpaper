@@ -27,14 +27,11 @@ setup: copy
 	cp nasa.timer ~/.config/systemd/user/nasa.timer
 
 
-run:
-	go run cmd/set-background/set-background.go
+test: copy
+	go run ./cmd/test
 
-test:
-	feh --bg-max https://upload.wikimedia.org/wikipedia/commons/5/52/Exampledotcom_2025.png
-
-reset: 
-	xsetroot -solid "#333333"
+run: copy
+	go run ./cmd/set-background
 
 systemd: setup 
 	systemctl --user daemon-reload
@@ -44,3 +41,8 @@ systemd: setup
 
 journal:
 	journalctl --user -xeu nasa
+
+
+reset: 
+	xsetroot -solid "#333333"
+

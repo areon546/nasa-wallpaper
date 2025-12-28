@@ -33,10 +33,10 @@ func (api API) evalParamString() string {
 
 		if isEven {
 			// is a parameter
-			params += v + "="
+			params += v + "=" + api.Params[i+1] + "&"
 		} else {
 			// is a value
-			params += v + "&"
+			continue
 		}
 	}
 
@@ -55,8 +55,8 @@ func Get(api API) *http.Response {
 	return res
 }
 
-func ProcessResponse(res *http.Response, v any) any {
-	dec := json.NewDecoder(res.Body)
-	dec.Decode(v)
+func ProcessResponse(res *[]byte, v any) any {
+	_ = json.Unmarshal(*res, &v)
+	// ignoring error as it should eventually be handled properly
 	return v
 }
