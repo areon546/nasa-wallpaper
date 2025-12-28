@@ -15,7 +15,7 @@ copy:
 dl: copy 
 	go run cmd/set-background/set-background.go
 
-setup: 
+setup: copy
 	# compile and copy set-background command 
 	go build cmd/set-background/set-background.go 
 	cp ./set-background ~/.config/dragon/nasa/
