@@ -1,9 +1,13 @@
 github.com/BurntSushi/toml v1.5.0 h1:W5quZX/G/csjUnuI8SUYlsHs9M38FC7znL0lIO+DvMg=
 github.com/BurntSushi/toml v1.5.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
+github.com/BurntSushi/toml v1.6.0 h1:dRaEfpa2VI55EwlIW72hMRHdWouJeRF7TPYhI+AUQjk=
+github.com/BurntSushi/toml v1.6.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/areon546/go-files v0.0.0-20251109040613-371541c8a8d2 h1:xOCBLAgQvWODTf266CLuzlQGjUrMt5CvT4IwZJGEFPM=
 github.com/areon546/go-files v0.0.0-20251109040613-371541c8a8d2/go.mod h1:qLbymUZ8QbF72H0gQLizmd0t3fX/MZx23/flzq8iqYQ=
 github.com/areon546/go-files v0.0.0-20251223201727-affaeff7e3a0 h1:qxPmz6LTyhQ0E0cNl0gRCcBfcdWj0a9y040U/qU4mJ4=
 github.com/areon546/go-files v0.0.0-20251223201727-affaeff7e3a0/go.mod h1:qLbymUZ8QbF72H0gQLizmd0t3fX/MZx23/flzq8iqYQ=
+github.com/areon546/go-files v0.0.0-20251230153954-cb2066d835d6 h1:5L6HVjL2vLyZNWMnNh/8yDbg8sb7aq0YpbIiHNKwnAI=
+github.com/areon546/go-files v0.0.0-20251230153954-cb2066d835d6/go.mod h1:NDw5xi1e0nrCW6QBSDyIIY1+GGRHQasuOQjE78g6WVs=
 github.com/areon546/go-helpers v0.0.0-20250820120313-8a98e4eca6e5 h1:djA5yPn2QbiY/GLFkq+HPql6oFFFHbWnZe4Ys7Um25c=
 github.com/areon546/go-helpers v0.0.0-20250820120313-8a98e4eca6e5/go.mod h1:pN+CQkoKXPG5/CV6P19/T3T9xcsKCtdj38zabkFuspA=
 github.com/hashicorp/errwrap v1.0.0 h1:hLrqtEDnRye3+sgx6z4qVLNuviH3MR5aQ0ykNJa/UYA=

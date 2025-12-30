@@ -1,4 +1,3 @@
-
 help:
 	@echo "Usage:"
 	@echo "		dl	: copies config to relevant directory, and runs cmd/download-photo"
@@ -12,7 +11,7 @@ help:
 copy:
 	cp ./draig-nasa-photos.toml ~/.config/dragon/nasa/wallpaper.toml
 
-dl: copy 
+dl: copy
 	go run cmd/set-background/set-background.go
 
 setup: copy
@@ -26,23 +25,22 @@ setup: copy
 	cp nasa.service ~/.config/systemd/user/nasa.service
 	cp nasa.timer ~/.config/systemd/user/nasa.timer
 
-
 test: copy
 	go run ./cmd/test
 
 run: copy
 	go run ./cmd/set-background
 
-systemd: setup 
+systemd: setup
 	systemctl --user daemon-reload
 	systemctl --user restart nasa.timer
 	systemctl --user restart nasa.service
 	systemctl --user enable nasa.timer
+	systemctl --user enable nasa.service
 
 journal:
 	journalctl --user -xeu nasa
 
 
-reset: 
+reset:
 	xsetroot -solid "#333333"
-

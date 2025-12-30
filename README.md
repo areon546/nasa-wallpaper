@@ -1,4 +1,4 @@
-# Nasa Photo Background
+# NASA Photo Background
 
 Check out [today's photo](https://apod.nasa.gov/apod/).
 
@@ -60,18 +60,16 @@ implementation thereof, as well as using the `BurntSushi/toml`, and `encode/json
 
 ### Structure
 
-`cmd` contains command line tools.
-`internal` contains logic regarding processing data, and other bootstrapping of the project (miscellaneous setup)
-
-I think a `domain` should be added, those usually contain core logic in the application space,
-which in this case I expect would be the NASA api's.
-Since I only use one, I wrote it directly into `cmd/set-background`.
+- `cmd` contains command line tools.
+- `internal` contains logic regarding processing data, and other bootstrapping of the project (miscellaneous setup)
+- `pkg` contains important logic that I don't mind being public
+- `domain` contains NASA api processing logic, not sure if it is appropriate however as it is using internal logic, 
+which seems counter to what a good domain package would do
 
 This project so far is hard coded to support the `apod` [api](https://github.com/nasa/apod-api),
-however I tried to design it so that it would be easier to restructure it
+however I tried to design it so that it would be easy to restructure it
 and add additional APIs (hence the arguably awkward [example configuration file](./example.toml)),
-however in theory so long as an API contains a `url` parameter like below,
-it should function.
+however in theory so long as an API contains a `url` parameter in the json, like below,
 
 ```json
 {
@@ -80,6 +78,7 @@ it should function.
   ...
 }
 ```
+it should function.
 
 ### CMD Commands
 

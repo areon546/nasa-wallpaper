@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"areon546/nasa-wallpaper/domain/nasa"
 	"areon546/nasa-wallpaper/internal"
-	"areon546/nasa-wallpaper/pkg/nasa"
 	"areon546/nasa-wallpaper/pkg/net"
 )
 
@@ -31,6 +31,8 @@ func main() {
 
 		fmt.Println(api, "not handled")
 	}
+
+	// TODO: Backup background if all else fails
 }
 
 // Checks pre-written handlers in order,

@@ -3,8 +3,11 @@ module areon546/nasa-wallpaper
 go 1.24.2
 
 require (
-	github.com/BurntSushi/toml v1.5.0 // indirect
-	github.com/areon546/go-files v0.0.0-20251223201727-affaeff7e3a0 // indirect
+	github.com/BurntSushi/toml v1.6.0
+	github.com/areon546/go-files v0.0.0-20251230153954-cb2066d835d6
+)
+
+require (
 	github.com/areon546/go-helpers v0.0.0-20250820120313-8a98e4eca6e5 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-multierror v1.0.0 // indirect
