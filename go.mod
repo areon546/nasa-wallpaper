@@ -4,7 +4,7 @@ go 1.24.2
 
 require (
 	github.com/BurntSushi/toml v1.5.0 // indirect
-	github.com/areon546/go-files v0.0.0-20251109040613-371541c8a8d2 // indirect
+	github.com/areon546/go-files v0.0.0-20251223201727-affaeff7e3a0 // indirect
 	github.com/areon546/go-helpers v0.0.0-20250820120313-8a98e4eca6e5 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-multierror v1.0.0 // indirect

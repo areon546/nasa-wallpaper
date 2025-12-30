@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"log"
 	"net/http"
 
 	"areon546/nasa-wallpaper/internal"
 	"areon546/nasa-wallpaper/pkg/nasa"
+	"areon546/nasa-wallpaper/pkg/net"
 )
 
 var c *internal.Config
@@ -18,7 +17,7 @@ func main() {
 
 	for _, api := range apiKeys {
 
-		res := internal.Get(c.Api[api])
+		res := net.Get(c.Api[api].FullURL())
 		if res.StatusCode != http.StatusOK {
 			fmt.Println(api, res.StatusCode, http.StatusText(res.StatusCode))
 
@@ -39,11 +38,7 @@ func main() {
 func handle(res *http.Response) (finished bool) {
 	// NOTE: since it is a response, it can only be read once.
 	// I should instead be passing through the jsonBytes
-	json, err := io.ReadAll(res.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer res.Body.Close()
+	json := net.ReadResponse(res)
 
 	if apods, ok := nasa.IsAPODS(c, &json); ok {
 		nasa.HandleAPODs(c, apods)

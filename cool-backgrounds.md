@@ -6,3 +6,4 @@ Note: Github caches lower quality versions of these links, so for now I will jus
 [2025-11-26: Globular Cluster M15 Deep Field](https://apod.nasa.gov/apod/ap251126.html)
 [2025-12-06: Apollo 17 at Shorty Crater](https://apod.nasa.gov/apod/ap251206.html) 
 [2025-12-28: Apollo 17 Moonship](https://apod.nasa.gov/apod/ap251227.html)
+[2019-10-27: Ghost Aurora over Canada](https://apod.nasa.gov/apod/ap191027.html)

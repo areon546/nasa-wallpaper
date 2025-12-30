@@ -9,9 +9,10 @@ import (
 )
 
 var (
-	configDirectory   string
-	screenshotsConfig string
-	c                 *Config = &Config{}
+	configDirectory string
+	wallpaperConfig string
+
+	c *Config = &Config{}
 )
 
 // sets default config directory for the program
@@ -28,7 +29,7 @@ func loadConfig() {
 	fmt.Println("Loading Config")
 	// READ TOML File
 	//
-	_, err := toml.DecodeFile(screenshotsConfig, c)
+	_, err := toml.DecodeFile(wallpaperConfig, c)
 	if err != nil {
 		panic(err)
 	}
@@ -54,9 +55,9 @@ type (
 // by default on linux checks to "~/.config/dragon/nasa"
 func ReadConfig() *Config {
 	checkConfigDirectory() // sets configDirectory
-	screenshotsConfig = configDirectory + "/wallpaper.toml"
+	wallpaperConfig = configDirectory + "/wallpaper.toml"
 
-	_, err := os.ReadFile(screenshotsConfig)
+	_, err := os.ReadFile(wallpaperConfig)
 
 	// if screenshot.conf exists: load
 	if err != nil {

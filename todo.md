@@ -21,4 +21,4 @@ based on a certain rule
 I need a way to create a backup chain for API calls to make,
 in case one fails.
 - Not too complicated, just while main loop over APIs in config
-in the same order
+if it fails

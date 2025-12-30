@@ -9,6 +9,7 @@ import (
 
 	"areon546/nasa-wallpaper/internal"
 	"areon546/nasa-wallpaper/pkg/cmd"
+	"areon546/nasa-wallpaper/pkg/net"
 )
 
 type APOD struct {
@@ -23,7 +24,7 @@ type APOD struct {
 
 func IsAPOD(c *internal.Config, res *[]byte) (pod APOD, ok bool) {
 	var thing APOD
-	something := internal.ProcessResponse(res, &thing)
+	something := net.ProcessResponse(res, &thing)
 
 	pod = *something.(*APOD)
 	return pod, len(pod.URL) >= 1
@@ -38,22 +39,24 @@ func HandleAPOD(c *internal.Config, apod APOD) {
 		url = apod.URL
 	}
 
-	fmt.Println("URLS: ", url, c.Hidef, apod.URL, url)
-
-	if reflect.DeepEqual(apod.MediaType, "image") {
-		cmd.Notify("New Background: ", apod.Title)
-		cmd.SetBackground(url)
-	} else {
-		cmd.Notify("Failed to set background", fmt.Sprintf("APOD has type %s", apod.MediaType))
-		os.Exit(1)
+	if !internal.IsCached(apod.Date) {
+		if reflect.DeepEqual(apod.MediaType, "image") {
+			internal.CacheURL(apod.Date, url)
+		} else {
+			cmd.Notify("Failed to set background", fmt.Sprintf("APOD has type %s", apod.MediaType))
+			os.Exit(1)
+		}
 	}
+
+	cmd.Notify("New Background: ", apod.Title)
+	cmd.SetBackground(internal.CacheFilename(apod.Date))
 }
 
 type APODS []APOD
 
 func IsAPODS(c *internal.Config, res *[]byte) (pods APODS, ok bool) {
 	var thing APODS
-	something := internal.ProcessResponse(res, &thing)
+	something := net.ProcessResponse(res, &thing)
 
 	pods = *something.(*APODS)
 	return pods, len(pods) >= 1

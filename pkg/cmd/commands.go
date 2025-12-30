@@ -9,13 +9,13 @@ func Notify(args ...string) {
 	RunCommand("notify-send", args...)
 }
 
-func SetBackground(url string) {
+func SetBackground(uri string) {
 	// alternative bg args : see man feh /--bg-
 	// --bg-scale
 	// --bg-max
 	// --bg-tile
 	// --bg-fill
-	RunCommand("/usr/bin/feh", "--bg-max", url)
+	RunCommand("/usr/bin/feh", "--bg-max", uri)
 }
 
 func RunCommand(name string, args ...string) {
