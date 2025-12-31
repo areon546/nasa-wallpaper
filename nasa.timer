@@ -2,7 +2,7 @@
 Description=Runs `nasa.service` daily.
 
 [Timer]
-OnBootSec=5s
+OnBootSec=10m
 OnCalendar=*-*-* 00:10:00
 Unit=nasa.service
 Persistent=true
