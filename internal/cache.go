@@ -24,7 +24,7 @@ func setupCacheDirectory() {
 	if err != nil {
 		panic(err)
 	}
-	cacheDirectory = files.JoinDirs(cache, "nasa-wallpaper")
+	cacheDirectory = files.JoinDirs(cache, "nasa-wallpapers")
 
 	// ensure exists :
 	err = files.MakeDirectory(cacheDirectory)
