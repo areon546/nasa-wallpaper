@@ -8,18 +8,13 @@ Check out [today's photo](https://apod.nasa.gov/apod/).
 ## Disclaimer
 
 This system is designed primarily for Linux.
-I don't know how to edit Windows Registry files programmatically, but I presume there is a way.
-In theory that would be a viable solution to this, 
-however I would also need to programmatically setup a schedule and I don't know how to do that.
-It definitely won't work on windows without significant changes. 
+I assume the equivalent solution for this on windows is editing 
+Windows Registry file for the background, and then use the Windows Scheduler to set up 
+a schedule for a similar time, and after bootup. 
 
 Do note, if you are on Windows (10 tested, likely higher aswell),
 you can bypass restrictions on setting your background image pretty easily
 and manually set registry file objects to bypass menu customisation options.
-
-This project now works, to the best of my knowledge.
-It works on my machine and I don't see how a system like `docker` is even appropriate
-for interfacing with window servers at all.
 
 If someone is interested and encounters an error,
 I will do my best to assist.
@@ -44,8 +39,8 @@ Steps:
 1. Clone the repository.
 2. Run `make systemd`
 
-And in theory this is all that should be needed for it to automatically request
-a new background daily. 
+I am using systemd as my current init system, 
+however that is no restriction.
 
 ## Improvements
 
