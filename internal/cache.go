@@ -45,7 +45,10 @@ func CacheFilename(fn string) string {
 
 // CacheURL caches the given url as the filename specified
 func CacheURL(filename, url string) {
-	net.DownloadFile(CacheFilename(filename), url)
+	err := net.DownloadFile(CacheFilename(filename), url)
+	if err != nil {
+		panic(err)
+	}
 }
 
 // IsCached checks if a given filename exists within the
